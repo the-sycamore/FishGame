@@ -21,7 +21,7 @@ public class BaseFish : MonoBehaviour
         float leftEdge = -tankBackground.localScale.x/2 + fishHalfSize;
         float rightEdge = tankBackground.localScale.x/2 - fishHalfSize;
 
-        if (transform.position.x > rightEdge || transform.position.x < leftEdge)
+        if ((transform.position.x > rightEdge && direction > 0) || (transform.position.x < leftEdge && direction < 0))
         {
             direction = direction * -1;
             fishy.flipX = !fishy.flipX;
