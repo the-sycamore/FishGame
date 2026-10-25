@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    [SerializeField]
-    private List<ItemData> ownedItems = new();
+    
+    private List<InterItemData> ownedItems = new();
 
     public static InventoryManager Instance { get; private set; }
 
@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
         else Destroy(this);
     }
 
-    public void AddItem(ItemData item)
+    public void AddItem(InterItemData item)
     {
         if (item == null) return;
 
@@ -26,13 +26,13 @@ public class InventoryManager : MonoBehaviour
             print("Inventory: ");
             for (int i = 0; i < ownedItems.Count; i++)
             {
-                print(ownedItems[i].name);
+                print(ownedItems[i].itemName);
             }
         }
         
     }
 
-    public bool RemoveItem(ItemData item) => ownedItems.Remove(item);
-    public IReadOnlyList<ItemData> GetItems() => ownedItems;
+    public bool RemoveItem(InterItemData item) => ownedItems.Remove(item);
+    public IReadOnlyList<InterItemData> GetItems() => ownedItems;
    
 }
