@@ -31,6 +31,9 @@ public class SpawnFish : MonoBehaviour
         tempFishComponent.speed = Random.Range(1f, 2f);
         FishTank.Instance.currFishList.Add(tempFishComponent);
 
+        // call for testing
+        FishData resultFish = FishGenerator.Instance.OnSuccess(100);
+
     }
 
 
@@ -44,7 +47,8 @@ public class SpawnFish : MonoBehaviour
 
         }
 
-        print(availableSpaces.Count);
+        // print for testing
+        print("Available Spaces Calculated: " + availableSpaces.Count);
 
         for (int i = 0; i < currCapacity; i++)
         {

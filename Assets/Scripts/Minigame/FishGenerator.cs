@@ -38,6 +38,7 @@ public class FishGenerator : MonoBehaviour
             if (result > curr) {
                 curr += myFishies[i+1].rarity;
             } else {
+                InventoryManager.Instance.AddItem(myFishies[i]);
                 return myFishies[i];
             }
 
