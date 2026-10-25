@@ -7,5 +7,7 @@ public class FishData : ScriptableObject
 {
     public float speed = 1;
     public float rarity = 0.50f;
+    public Sprite sprite;
+    public string personality;
 
 }

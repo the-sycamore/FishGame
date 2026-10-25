@@ -31,6 +31,8 @@ public class SpawnFish : MonoBehaviour
         tempFishComponent.speed = Random.Range(1f, 2f);
         FishTank.Instance.currFishList.Add(tempFishComponent);
 
+        FishData resultFish = FishGenerator.Instance.OnSuccess(100);
+
     }
 
 
