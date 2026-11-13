@@ -31,12 +31,14 @@ public class BaseFish : MonoBehaviour
         targetSR_Rot = Quaternion.identity;
 
         if (FishTank.Instance.bubblePopCol != null) ps.trigger.AddCollider(FishTank.Instance.bubblePopCol);
+
+        fishy.sprite = data.sprite;
     }
 
 
     void Update()
     {
-        transform.position += Vector3.right * direction * speed * Time.deltaTime;
+        transform.position += Vector3.right * direction * data.speed * Time.deltaTime;
 
         float fishHalfSize = transform.localScale.x/2 + turnDistance;
         float tankWidth = FishTank.Instance.GetBackgroundLength();

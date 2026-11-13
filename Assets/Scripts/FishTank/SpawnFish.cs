@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class SpawnFish : MonoBehaviour
 {
@@ -11,29 +12,51 @@ public class SpawnFish : MonoBehaviour
 
     public float tankDistance = 0.5f;
 
+    //debug --
+    InputAction interactAction;
+    //--
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         InitAvailableSpaces(5);
+
+        // debug--
+            interactAction = InputSystem.actions.FindAction("Interact");
+        //
     }
 
+    //for debug --
+    private void Update()
+    {
+        bool ifInteract = interactAction.WasPressedThisFrame();
+
+        if (ifInteract)
+        {
+            FishData newFishData = FishGenerator.Instance.OnSuccess(1f);
+            SpawnFishFromData(newFishData);
+        }
+    }
+
+    // --
+
     float GetFishTankHeight() => tankBackground.localScale.y;
-    void PlaceFish()
+
+    void PlaceFish(FishData newFishData)
     {
         Vector2 position = Vector2.zero;
         int randomNumber = Random.Range(0, availableSpaces.Count - 1);
         position.y = availableSpaces[randomNumber];
         availableSpaces.RemoveAt(randomNumber);
+
+
         GameObject tempFish = Instantiate(fishy, position, Quaternion.identity);
+
+        //get fish data
         BaseFish tempFishComponent = tempFish.GetComponent<BaseFish>();
-        tempFishComponent.speed = Random.Range(1f, 2f);
+        tempFishComponent.Init(newFishData);
         FishTank.Instance.currFishList.Add(tempFishComponent);
-
-        // call for testing
-        FishData resultFish = FishGenerator.Instance.OnSuccess(100);
-
     }
 
 
@@ -46,14 +69,11 @@ public class SpawnFish : MonoBehaviour
             availableSpaces.Add((calcHeight - fishTankHeight / 2) - tankDistance);
 
         }
-
-        // print for testing
-        print("Available Spaces Calculated: " + availableSpaces.Count);
-
-        for (int i = 0; i < currCapacity; i++)
-        {
-            PlaceFish();
-        }
     }
 
+    public void SpawnFishFromData(FishData newFishData)
+    {
+        if (availableSpaces.Count <= 0) return;
+        PlaceFish(newFishData);
+    }
 }
