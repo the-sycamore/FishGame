@@ -3,7 +3,7 @@ using UnityEngine;
 
 // scriptable object 
 [CreateAssetMenu(fileName = "FishData", menuName = "Scriptable Objects/FishData")]
-public class FishData : ScriptableObject, InterItemData
+public class FishData : ScriptableObject
 {
     public float speed = 1;
     public float rarity = 0.50f;
@@ -11,9 +11,4 @@ public class FishData : ScriptableObject, InterItemData
     public Sprite sprite { get; private set; }
     public string itemName => name;
     public string personality;
-    public void ItemActivation()
-    {
-        
-    }
-
 }
