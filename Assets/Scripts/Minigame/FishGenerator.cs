@@ -15,7 +15,6 @@ public class FishGenerator : MonoBehaviour
         else Destroy(this);
     }
 
-
     public FishData OnSuccess(float successLevel)
     {
         // 1 add all the probabilities of each fish together = total
@@ -40,12 +39,8 @@ public class FishGenerator : MonoBehaviour
             } else {
                 return myFishies[i];
             }
-
         }
 
         return null;
-
-
-
     }
 }
