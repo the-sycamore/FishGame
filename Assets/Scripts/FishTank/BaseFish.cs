@@ -61,7 +61,7 @@ public class BaseFish : MonoBehaviour
             targetSR_Rot = Quaternion.Euler(0, srRot, 0);
         }
 
-        fishy.transform.rotation = Quaternion.Lerp(fishy.transform.rotation, targetSR_Rot, turnSpeed);
+        fishy.transform.rotation = Quaternion.Lerp(fishy.transform.rotation, targetSR_Rot, turnSpeed * 200 * Time.deltaTime);
     }
 
 
